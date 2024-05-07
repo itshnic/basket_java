@@ -11,9 +11,9 @@ public class ReadFile {
         this.path = path;
         this.fileName = fileName;
     }
-    public String fileToArray() {
+    public String[] fileToArray() {
         try (BufferedReader fr = new BufferedReader(new FileReader(this.path + this.fileName))) {
-            return fr.readLine();
+            return fr.readLine().split(" ");
         } catch (IOException e) {
             throw new RuntimeException("Нет файла или он не читается");
         }

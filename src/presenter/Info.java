@@ -1,16 +1,42 @@
 package presenter;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Info {
-    public ArrayList<String> maxLongNameProduct(ArrayList<String> array) {
-        ArrayList<String> sortMaxLongName = new ArrayList<>();
-        String maxLongName = array.get(0);
-        for (int i = 1; i < array.size(); i++) {
-            maxLongName=maxLongName<=
+
+    public String maxLongNameProduct(String[] array) {
+        int maxLength = array[0].length();
+        for (int i = 0; i < array.length; i++) {
+            if(maxLength<array[i].length()){
+                maxLength=array[i].length();
+            }
         }
-
-
-        return sortMaxLongName;
+        String listLongName = "";
+        int count = 1;
+        for (int i = 0; i < array.length; i++) {
+            if (maxLength == array[i].length()) {
+                listLongName += (count++)+". "+array[i]+"; ";
+            }
+        }
+        return listLongName;
     }
+
+    public int count(String[] array) {
+        return array.length;
+    }
+
+    public Map<String, Integer> duplicate(String[] array) {
+        Map<String, Integer> searchDuplicate = new HashMap<>();
+        for (String product : array) {
+            if (!searchDuplicate.containsKey(product)){
+                searchDuplicate.put(product,1);
+            } else {
+                searchDuplicate.replace(product,searchDuplicate.get(product)+1);
+            }
+        }
+        return searchDuplicate;
+    }
+
 }
